@@ -8,6 +8,7 @@ var game = new Phaser.Game(1024, 768, Phaser.CANVAS, 'phaser-example', {
 function preload() {
 
     game.load.tilemap('desert', '../examples/assets/tilemaps/maps/desert.json', null, Phaser.Tilemap.TILED_JSON);
+    //game.load.tilemap('desert', 'desert.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('tiles', '../examples/assets/tilemaps/tiles/tmw_desert_spacing.png');
     game.load.image('car', '../examples/assets/sprites/car90.png');
 
@@ -26,7 +27,12 @@ function create() {
     map = game.add.tilemap('desert');
 
     map.addTilesetImage('Desert', 'tiles');
+	
+	map.setCollisionBetween(1, 2);
+	map.setCollisionBetween(8, 10);
+	map.setCollisionBetween(16, 18);
 
+	
     layer = map.createLayer('Ground');
 
     layer.resizeWorld();
@@ -72,7 +78,7 @@ function update() {
 
 function render() {
 
-    game.debug.text('Click to fill tiles', 32, 32, 'rgb(0,0,0)');
+    //game.debug.text('Click to fill tiles', 32, 32, 'rgb(0,0,0)');
     game.debug.text('Tile X: ' + layer.getTileX(sprite.x), 32, 48, 'rgb(0,0,0)');
     game.debug.text('Tile Y: ' + layer.getTileY(sprite.y), 32, 64, 'rgb(0,0,0)');
 
